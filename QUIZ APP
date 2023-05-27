@@ -1,0 +1,118 @@
+package javaquizgame;
+import java.util.Scanner;
+
+public class JavaQuizGame {
+    Scanner in = new Scanner(System.in);
+    
+    // Variables to track the number of correct, wrong answers, and the current question index
+    public int Correct = 0;
+    public int Wrong = 0;
+    public int Index = 0;
+    
+    // Array to store the questions
+    public String[] Question = {
+        "Q.1: In Java, JAR stands for ?",
+        "Q.2: Which keyword is used for accessing the features of a package?",
+        "Q.3: Which package contains the Scanner Class?",
+        "Q.4: JVM stands for:",
+        "Q.5: To declare an array in Java, which symbol is used: "
+    };
+    
+    // Array to store the answer options
+    public String[] Option = {
+        "(a). Java Arcieve Runner\n(b). Java Application Resource\n(c). Java Archive\n(d). Java Application Runner",
+        "(a). import\n(b). package\n(c). extends\n(d). export",
+        "(a). java.lang\n(b). java.time\n(c). java.io\n(d). java.util",
+        "(a). Java Visual Machine\n(b). Java Virtual Machine\n(c). Java Virtual Mobile\n(d). Joint Visual Machine ",
+        "(a). []\n(b). ()\n(c). {}\n(d). //"
+    };
+    
+    // 2D array to store the correct answers for each question
+    public char[][] Ans = {
+        {'3', 'C', 'c'},
+        {'1', 'A', 'a'},
+        {'4', 'D', 'd'},
+        {'2', 'B', 'b'},
+        {'1', 'A', 'a'}
+    };
+    
+    public static void main(String[] args) {
+        JavaQuizGame j = new JavaQuizGame();
+        
+        j.menu(); // Display the menu
+        j.displayQuestion(); // Display the questions
+        j.result(); // Display the results
+    }
+        
+    // Display the menu
+    public void menu(){
+        System.out.println("===========================");
+        System.out.println("* WELCOME TO THE JAVA QUIZ *");
+        System.out.println("===========================\n");
+        
+        System.out.print("Enter your name: ");
+        String name = in.nextLine();
+        System.out.println("\nWelcome, " + name + "!\n");
+        
+    }
+        
+    // Display the questions and get user input
+    public void displayQuestion(){
+        for(int i = 0 ; i < 5 ; i++){
+            System.out.println(Question[i]); // Display the current question
+            System.out.println(Option[i]); // Display the answer options
+            this.input(); // Get user input
+        }
+    }
+        
+    // Get user input and validate the answer
+    public void input(){
+        System.out.print("\nChoose an option: ");
+        String UserInput = in.next();
+        if(UserInput.length()==1){
+            char Input = UserInput.charAt(0); // Read the user's input
+            
+            // Check if the input matches any of the correct answer options
+            if(Input == Ans[Index][0] || Input == Ans[Index][1] || Input == Ans[Index][2]){
+                System.out.println("Correct!\n");
+                this.Correct++; // Increment the number of correct answers
+                this.Index++; // Move to the next question
+            }
+            // Check if the input is invalid
+            else if (Input != 'a' && Input != 'b' && Input != 'c' && Input != 'd'
+                     && Input != 'A' && Input != 'B' && Input != 'C' && Input != 'D'
+                     && Input != '1' && Input != '2' && Input != '3' && Input != '4'){
+                System.out.println("Invalid Input! Please Choose the option again.\n");
+                System.out.println(Question[Index]); // Display the current question again
+                System.out.println(
+
+Option[Index]); // Display the answer options again
+                this.input(); // Get user input again
+            }
+            // If the input is not correct and not invalid, consider it as a wrong answer
+            else{
+                System.out.println("Wrong!\n");
+                this.Wrong++; // Increment the number of wrong answers
+                this.Index++; // Move to the next question
+            }
+        }
+        else{
+            System.out.println("Invalid Input! Please Choose the option again.\n");
+            System.out.println(Question[Index]); // Display the current question again
+            System.out.println(Option[Index]); // Display the answer options again
+            this.input(); // Get user input again    
+        }
+    }
+    
+    // Display the quiz results
+    public void result(){
+        System.out.println("===========================");
+        System.out.println("       * RESULT *");
+        System.out.println("===========================");
+        System.out.println("Correct Answers: " + Correct);
+        System.out.println("Wrong Answers: " + Wrong);
+        System.out.println("You Scored: " + Correct + "/5");
+        System.out.println("Percentage: " + Correct * 100 / 5);
+    }
+       
+}
