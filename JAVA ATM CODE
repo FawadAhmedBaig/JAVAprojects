@@ -1,0 +1,204 @@
+package atm;
+import java.util.Scanner; // Will be used to get input from the user
+
+public class ATM {
+    
+// Initialize account information
+    private static final String Account_Name = " Fawad Ahmed Baig";
+    private static final int    Account_Number = 123456;
+    private static int          Account_Balance = 1000;
+    private static final int    Account_Pin = 1234;
+    private static final int    Account_Number_EasyPasa = 1234567;
+    private static  int         Account_Balance_EasyPasa = 200;
+    private static final int    Account_Number_JazzCash = 12345678;
+    private static  int         Account_Balance_JazzCash = 100;
+// Display main menu options
+public static void mainManu(){ 
+    System.out.println("\n");
+    System.out.println("\t\tATM options");
+
+    System.out.println("------------------------");
+    System.out.println("1.check Balance ");
+    System.out.println("2.Withdraw ");
+    System.out.println("3.Deposit");
+    System.out.println("4.Trancefer fund");
+    System.out.println("5.Exit");
+    System.out.println("\n------------------------");
+    System.out.println("\t ENTER A NUMBER : ");
+    }
+public static void main(String[] args) {
+// Initialize scanner to read input from user
+    Scanner sc = new Scanner(System.in); 
+    while(true){// Display welcome message and login page
+    System.out.println("\n\nWELCOME TO JAVA BANK LIMITED ");
+    System.out.println("");
+    System.out.println("\t--LOGIN PAGE--");
+    System.out.println("please enter your Account Number!");
+    double num =sc.nextInt(); // Read account number from user
+    System.out.println("please enter your pin !");
+    double pin =sc.nextInt();  // Read PIN from user
+    
+    // Check if account number and PIN are correct
+    if (pin == Account_Pin && num == Account_Number){
+     System.out.println("WELCOME! "+ Account_Name);
+    
+     while(true){ 
+          // Display main menu options
+            mainManu();
+            int op =sc.nextInt();
+            switch(op){ 
+                
+            case 1:  // Display current account balance
+                // Clear the console screen
+                for (int i = 0; i < 25; i++) {
+                System.out.println();}
+
+                System.out.println("Your current balance is : " + Account_Balance +"$");
+
+                break;
+            case 2:  // Withdraw money from account
+                // Clear the console screen
+                for (int i = 0; i < 25; i++) {
+                System.out.println();}
+
+
+                System.out.println("Enter amount that you want to Withdraw : ");
+                int amount =sc.nextInt();
+                if(amount>Account_Balance){
+                System.out.println("Insufficient Balance!");
+                break; }
+                else
+                System.out.println("Process successfully done ");
+                System.out.println("You have withdrawn "+amount+"$"+" and now your BANK balance is : " + (Account_Balance - amount)+"$");
+                Account_Balance = Account_Balance - amount;
+                break;
+            case 3: // Display deposit options
+                // Clear the console screen
+                for (int i = 0; i < 25; i++) {
+                System.out.println();}
+
+                        System.out.println("----Cash Deposit Selected---");
+                        System.out.println("Enter amount that you want to Deposit : ");
+                        int deposit = sc.nextInt();
+
+                        // Clear the console screen
+                        for (int i = 0; i < 25; i++) {
+                        System.out.println();}
+
+                        System.out.println("Process successfully done ");
+                        System.out.println("You have withdrawn "+deposit+"$"+" and now your BANK balance is : " + (Account_Balance + deposit)+"$");
+                        Account_Balance = Account_Balance + deposit;
+
+
+                break;
+
+            case 4:
+                // Clear the console screen
+                for (int i = 0; i < 25; i++) {
+                System.out.println();}
+
+                while (true){
+                System.out.println("--FUND TRANCSFER--");
+                System.out.println("");
+                System.out.println("HERE ARE SOME AVAILABLE ACCOUNTS FOR FUND TRANCEFER");
+                System.out.println("1-EasyPaisa-");
+                System.out.println("2-JazzCash-");
+                System.out.println("");
+                System.out.println("Select Account");
+                int y = sc.nextInt();
+
+                  switch(y){
+                    case 1:
+                            System.out.println("----EasyPaisa Selected---");
+                            System.out.println("");
+                            System.out.println("Enter Account Number : ");
+                            int num1 = sc.nextInt();
+                            if(num1 != Account_Number_EasyPasa){
+                            System.out.println("SORRY INVALID ACCOUNT NUMBER ");
+                            continue; }
+                            System.out.println("Enter Amount : ");
+                            int a1 = sc.nextInt();
+                            if(a1>Account_Balance){
+                            System.out.println("Insuffient Balance!");
+                            break; }
+                            else
+                            // Clear the console screen
+                            for (int i = 0; i < 25; i++) {
+                            System.out.println();}
+                            System.out.println("Process successfully done ");
+                            Account_Balance = Account_Balance - a1;
+                            Account_Balance_EasyPasa =  Account_Balance_EasyPasa + a1;
+                            System.out.println("--TRANSCRIPT--");
+                            System.out.println("you have a Transaction of  "+a1+"$"+" and now your BANK balance is : " + (Account_Balance)+"$");
+                            System.out.println("your EasyPaisa Account Balance is : "+Account_Balance_EasyPasa + "$");
+                            System.exit(0);
+                            // Clear the console screen
+
+                        break;
+                    case 2:
+                            System.out.println("----JazzCash Selected---");
+                            System.out.println("");
+                            System.out.println("enter Account Number : ");
+                            int num2 = sc.nextInt();
+                            if(num2 != Account_Number_JazzCash){
+                            System.out.println("SORRY INVALID ACCOUNT NUMBER ");
+                            continue; }
+                            System.out.println("enter Amount : ");
+                            int a2 = sc.nextInt();
+                            if(a2>Account_Balance){
+                            System.out.println("Insufficient Balance! ");
+                            break; }
+                            else
+                            // Clear the console screen
+                            for (int i = 0; i < 25; i++) {
+                            System.out.println();}
+                            System.out.println("Process successfully done ");
+                            Account_Balance = Account_Balance - a2;
+                            Account_Balance_JazzCash =  Account_Balance_JazzCash + a2;
+                            System.out.println("--TRANSCRIPT--");
+                            System.out.println("you have a Trancsaction of  "+a2+"$"+" and now your BANK balance is : " + (Account_Balance)+"$");
+                            System.out.println("your JazzCash Account Balance is : "+Account_Balance_JazzCash + "$");
+                            System.exit(0);
+                            break;
+                            // Clear the console screen
+                    default : // excute at invalid choice
+                            // Clear the console screen
+                            for (int i = 0; i < 25; i++) {
+                            System.out.println();}
+
+                            System.out.println("Invalid Choice  ");
+
+                    }
+                    
+                }
+           
+
+
+            case 5:
+                // Clear the console screen
+                for (int i = 0; i < 25; i++) {
+                System.out.println();}
+
+
+                System.out.println("Thanks for using ATM ");
+                System.exit(0);
+                break;
+            default :
+                // Clear the console screen
+                for (int i = 0; i < 25; i++) {
+                System.out.println();}
+
+                System.out.println("Invalid Choice  ");
+            }
+        }
+     }
+    else
+        // Clear the console screen
+        for (int i = 0; i < 25; i++) {
+        System.out.println();}
+
+        System.out.println("Invalid Account number or Pin !?");
+     return;
+    }	
+}
+}
